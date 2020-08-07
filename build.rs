@@ -8,7 +8,8 @@ fn main() {
 
 fn build_library() {
 
-    let code_dir = PathBuf::from(env::var("CARGO_MANIFEST_DIR").unwrap()).join("quickjs");
+    let base_dir = PathBuf::from(env::var("CARGO_MANIFEST_DIR").unwrap());
+    let code_dir = base_dir.join("quickjs");
     
     let quickjs_version =
         std::fs::read_to_string(code_dir.join("VERSION")).expect("failed to read quickjs version");
@@ -31,7 +32,9 @@ fn build_library() {
         ]
         .iter()
         .map(|f| code_dir.join(f)),
-    ).define("_GNU_SOURCE", None)
+    )
+    .file(base_dir.join("quickjs+extern.c"))
+    .define("_GNU_SOURCE", None)
         .define(
             "CONFIG_VERSION",
             format!("\"{}\"", quickjs_version.trim()).as_str(),
