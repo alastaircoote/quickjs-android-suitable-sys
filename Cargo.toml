@@ -1,5 +1,6 @@
 [package]
 authors = ["Alastair Coote <rust@alastair.is>"]
+build = "build.rs"
 categories = ["external-ffi-bindings"]
 description = "QuickJS Javascript Engine FFI bindings, suitable for use on Android"
 edition = "2018"
@@ -8,8 +9,7 @@ license = "MIT"
 name = "quickjs_android_suitable_sys"
 readme = "README.md"
 repository = "https://github.com/alastaircoote/quickjs-android-suitable-sys"
-version = "0.1.0"
-build = "build.rs"
+version = "0.1.1"
 
 [features]
 bignum = []
@@ -17,5 +17,5 @@ default = ["bignum"]
 dump_leaks = []
 
 [build-dependencies]
-bindgen = {version = "0.54.1"}
+bindgen = {version = "0.57.0"}
 cc = {version = "1.0"}

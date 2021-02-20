@@ -3,7 +3,7 @@ use std::path::PathBuf;
 
 fn main() {
     build_library();
-    generate_bindings();
+    // generate_bindings();
 }
 
 fn build_library() {
@@ -63,38 +63,38 @@ fn build_library() {
         .compile("quickjs");
 }
 
-fn generate_bindings() {
-    // Turns out QuickJS bindings look really different when you're building for
-    // Android i686. Why? No idea! But bindgen doesn't check platform, so we have to manually
-    // specify it.
-    let target = env::var("TARGET").expect("Could not read the target platform");
+// fn generate_bindings() {
+//     // Turns out QuickJS bindings look really different when you're building for
+//     // Android i686. Why? No idea! But bindgen doesn't check platform, so we have to manually
+//     // specify it.
+//     let target = env::var("TARGET").expect("Could not read the target platform");
 
-    let header_path =
-        PathBuf::from(env::var("CARGO_MANIFEST_DIR").unwrap()).join("quickjs+extern.h");
-    let out_path = PathBuf::from(env::var("OUT_DIR").unwrap());
+//     let header_path =
+//         PathBuf::from(env::var("CARGO_MANIFEST_DIR").unwrap()).join("quickjs+extern.h");
+//     let out_path = PathBuf::from(env::var("OUT_DIR").unwrap());
 
-    // Generate bindings.
-    let bindings = bindgen::Builder::default()
-        .header(
-            header_path
-                .to_str()
-                .expect("Could not create QuickJS path")
-                .to_string(),
-        )
-        .clang_arg(format!("--target={}", target))
-        // When in Android i686 JSValue becomes an f64. So we force JSValue to be
-        // opaque in all other situations, so we don't try to read out tags
-        // or anything like that and suddenly discover things break on i686.
-        // .opaque_type("JSValue")
-        .whitelist_function("JS.*")
-        .whitelist_type("JS.*")
-        .whitelist_var("JS.*")
-        .size_t_is_usize(true)
-        .generate()
-        .expect("Unable to generate bindings");
+//     // Generate bindings.
+//     let bindings = bindgen::Builder::default()
+//         .header(
+//             header_path
+//                 .to_str()
+//                 .expect("Could not create QuickJS path")
+//                 .to_string(),
+//         )
+//         .clang_arg(format!("--target={}", target))
+//         // When in Android i686 JSValue becomes an f64. So we force JSValue to be
+//         // opaque in all other situations, so we don't try to read out tags
+//         // or anything like that and suddenly discover things break on i686.
+//         // .opaque_type("JSValue")
+//         .whitelist_function("JS.*")
+//         .whitelist_type("JS.*")
+//         .whitelist_var("JS.*")
+//         .size_t_is_usize(true)
+//         .generate()
+//         .expect("Unable to generate bindings");
 
-    // Write the bindings to the $OUT_DIR/bindings.rs file.
-    bindings
-        .write_to_file(out_path.join("bindings.rs"))
-        .expect("Couldn't write bindings!");
-}
+//     // Write the bindings to the $OUT_DIR/bindings.rs file.
+//     bindings
+//         .write_to_file(out_path.join("bindings.rs"))
+//         .expect("Couldn't write bindings!");
+// }
