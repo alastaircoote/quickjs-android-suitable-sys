@@ -12,8 +12,9 @@ extern "C"
     void JS_FreeValue__(JSContext *ctx, JSValue v);
     JS_BOOL JS_IsUndefined__(JSValueConst v);
     JS_BOOL JS_IsString__(JSValueConst v);
-
     int JS_GetTag__(JSValueConst v);
+    JSValue JS_DupValue__(JSContext *ctx, JSValueConst v);
+    JSValue JS_DupValueRT__(JSRuntime *rt, JSValueConst v);
 
 #ifdef __cplusplus
 } /* extern "C" { */

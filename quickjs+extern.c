@@ -45,6 +45,16 @@ extern "C"
         return JS_VALUE_GET_TAG(v);
     }
 
+    JSValue JS_DupValue__(JSContext *ctx, JSValueConst v)
+    {
+        return JS_DupValue(ctx, v);
+    }
+
+    JSValue JS_DupValueRT__(JSRuntime *rt, JSValueConst v)
+    {
+        return JS_DupValueRT(rt, v);
+    }
+
 #ifdef __cplusplus
 } /* extern "C" { */
 #endif
