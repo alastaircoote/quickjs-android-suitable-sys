@@ -28,11 +28,12 @@ fn generate_bindings() {
         // When in Android i686 JSValue becomes an f64. So we force JSValue to be
         // opaque in all other situations, so we don't try to read out tags
         // or anything like that and suddenly discover things break on i686.
-        // .opaque_type("JSValue")
+        .opaque_type("JSValue")
         .whitelist_function("(JS|js).*")
         .whitelist_type("(JS|js).*")
         .whitelist_var("(JS|js).*")
         .size_t_is_usize(true)
+        .derive_debug(true)
         .generate()
         .expect("Unable to generate bindings");
 
