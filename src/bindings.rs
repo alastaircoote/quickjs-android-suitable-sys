@@ -2952,13 +2952,16 @@ extern "C" {
     pub fn JS_IsException__(v: JSValue) -> ::std::os::raw::c_int;
 }
 extern "C" {
-    pub fn JS_FreeValue__(ctx: *mut JSContext, v: JSValue);
+    pub fn JS_IsObject__(v: JSValue) -> ::std::os::raw::c_int;
 }
 extern "C" {
     pub fn JS_IsUndefined__(v: JSValue) -> ::std::os::raw::c_int;
 }
 extern "C" {
     pub fn JS_IsString__(v: JSValue) -> ::std::os::raw::c_int;
+}
+extern "C" {
+    pub fn JS_FreeValue__(ctx: *mut JSContext, v: JSValue);
 }
 extern "C" {
     pub fn JS_GetTag__(v: JSValue) -> ::std::os::raw::c_int;

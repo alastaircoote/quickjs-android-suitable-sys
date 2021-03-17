@@ -11,9 +11,13 @@ Making this change breaks compatibility with the higher level library that uses 
 ## Extra features
 
 - `bignum`
-  
+
   Enable this to add bigint support to QuickJS
 
 - `dump_leaks`
 
   Dumps out variables still being held in the JS engine whenever it is released. Useful to debugging memory leaks.
+
+## Publishing
+
+Before running `cargo publish` please run `cargo script scripts/generate-bindings.rs`. There's a better way to do this, I'm sure.
