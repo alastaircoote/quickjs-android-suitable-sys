@@ -55,6 +55,11 @@ extern "C"
         return JS_DupValueRT(rt, v);
     }
 
+    JS_BOOL JS_IsObject__(JSValueConst v)
+    {
+        return JS_IsObject(v);
+    }
+
 #ifdef __cplusplus
 } /* extern "C" { */
 #endif
