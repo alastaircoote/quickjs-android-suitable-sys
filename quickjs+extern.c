@@ -60,6 +60,12 @@ extern "C"
         return JS_IsObject(v);
     }
 
+    const JSValue JS_UNDEFINED__ = JS_UNDEFINED;
+    const JSValue JS_NULL__ = JS_NULL;
+    const JSValue JS_TRUE__ = JS_TRUE;
+    const JSValue JS_EXCEPTION__ = JS_EXCEPTION;
+    const JSValue JS_UNINITIALIZED__ = JS_UNINITIALIZED;
+
 #ifdef __cplusplus
 } /* extern "C" { */
 #endif
