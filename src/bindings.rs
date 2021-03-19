@@ -2975,3 +2975,15 @@ extern "C" {
 extern "C" {
     pub static JS_UNDEFINED__: JSValue;
 }
+extern "C" {
+    pub static JS_NULL__: JSValue;
+}
+extern "C" {
+    pub static JS_TRUE__: JSValue;
+}
+extern "C" {
+    pub static JS_EXCEPTION__: JSValue;
+}
+extern "C" {
+    pub static JS_UNINITIALIZED__: JSValue;
+}
