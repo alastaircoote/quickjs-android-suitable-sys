@@ -23,7 +23,6 @@ fn generate_bindings() {
                 .expect("Could not create QuickJS path")
                 .to_string(),
         )
-        
         // .clang_arg(format!("--target={}", target))
         // When in Android i686 JSValue becomes an f64. So we force JSValue to be
         // opaque in all other situations, so we don't try to read out tags
@@ -34,6 +33,8 @@ fn generate_bindings() {
         .whitelist_var("(JS|js).*")
         .size_t_is_usize(true)
         .derive_debug(true)
+        .derive_partialeq(true)
+        .derive_eq(true)
         .generate()
         .expect("Unable to generate bindings");
 
