@@ -33,8 +33,6 @@ fn generate_bindings() {
         .whitelist_var("(JS|js).*")
         .size_t_is_usize(true)
         .derive_debug(true)
-        .derive_partialeq(true)
-        .derive_eq(true)
         .generate()
         .expect("Unable to generate bindings");
 

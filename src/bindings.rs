@@ -62,7 +62,7 @@ pub type __darwin_size_t = ::std::os::raw::c_ulong;
 pub type __darwin_off_t = __int64_t;
 pub type fpos_t = __darwin_off_t;
 #[repr(C)]
-#[derive(Debug, Copy, Clone, PartialEq, Eq)]
+#[derive(Debug, Copy, Clone)]
 pub struct __sbuf {
     pub _base: *mut ::std::os::raw::c_uchar,
     pub _size: ::std::os::raw::c_int,
@@ -106,7 +106,7 @@ pub struct __sFILEX {
     _unused: [u8; 0],
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone, PartialEq, Eq)]
+#[derive(Debug, Copy, Clone)]
 pub struct __sFILE {
     pub _p: *mut ::std::os::raw::c_uchar,
     pub _r: ::std::os::raw::c_int,
@@ -404,7 +404,7 @@ pub const JS_TAG_EXCEPTION: ::std::os::raw::c_int = 6;
 pub const JS_TAG_FLOAT64: ::std::os::raw::c_int = 7;
 pub type _bindgen_ty_1 = ::std::os::raw::c_int;
 #[repr(C)]
-#[derive(Debug, Copy, Clone, PartialEq, Eq)]
+#[derive(Debug, Copy, Clone)]
 pub struct JSRefCountHeader {
     pub ref_count: ::std::os::raw::c_int,
 }
@@ -484,7 +484,7 @@ fn bindgen_test_layout_JSValueUnion() {
 }
 #[repr(C)]
 #[repr(align(8))]
-#[derive(Debug, Copy, Clone, PartialEq, Eq)]
+#[derive(Debug, Copy, Clone)]
 pub struct JSValue {
     pub _bindgen_opaque_blob: [u64; 2usize],
 }
@@ -529,7 +529,7 @@ pub type JSCFunctionData = ::std::option::Option<
     ) -> JSValue,
 >;
 #[repr(C)]
-#[derive(Debug, Copy, Clone, PartialEq, Eq)]
+#[derive(Debug, Copy, Clone)]
 pub struct JSMallocState {
     pub malloc_count: usize,
     pub malloc_size: usize,
@@ -590,7 +590,7 @@ fn bindgen_test_layout_JSMallocState() {
     );
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone, PartialEq, Eq)]
+#[derive(Debug, Copy, Clone)]
 pub struct JSMallocFunctions {
     pub js_malloc: ::std::option::Option<
         unsafe extern "C" fn(s: *mut JSMallocState, size: usize) -> *mut ::std::os::raw::c_void,
@@ -855,7 +855,7 @@ extern "C" {
     ) -> *mut ::std::os::raw::c_char;
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone, PartialEq, Eq)]
+#[derive(Debug, Copy, Clone)]
 pub struct JSMemoryUsage {
     pub malloc_size: i64,
     pub malloc_limit: i64,
@@ -1208,7 +1208,7 @@ extern "C" {
     pub fn JS_ValueToAtom(ctx: *mut JSContext, val: JSValue) -> JSAtom;
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone, PartialEq, Eq)]
+#[derive(Debug, Copy, Clone)]
 pub struct JSPropertyEnum {
     pub is_enumerable: ::std::os::raw::c_int,
     pub atom: JSAtom,
@@ -1247,7 +1247,7 @@ fn bindgen_test_layout_JSPropertyEnum() {
     );
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone, PartialEq, Eq)]
+#[derive(Debug, Copy, Clone)]
 pub struct JSPropertyDescriptor {
     pub flags: ::std::os::raw::c_int,
     pub value: JSValue,
@@ -1308,7 +1308,7 @@ fn bindgen_test_layout_JSPropertyDescriptor() {
     );
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone, PartialEq, Eq)]
+#[derive(Debug, Copy, Clone)]
 pub struct JSClassExoticMethods {
     pub get_own_property: ::std::option::Option<
         unsafe extern "C" fn(
@@ -1485,7 +1485,7 @@ pub type JSClassCall = ::std::option::Option<
     ) -> JSValue,
 >;
 #[repr(C)]
-#[derive(Debug, Copy, Clone, PartialEq, Eq)]
+#[derive(Debug, Copy, Clone)]
 pub struct JSClassDef {
     pub class_name: *const ::std::os::raw::c_char,
     pub finalizer: JSClassFinalizer,
@@ -2015,7 +2015,7 @@ extern "C" {
     ) -> JSValue;
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone, PartialEq, Eq)]
+#[derive(Debug, Copy, Clone)]
 pub struct JSSharedArrayBufferFunctions {
     pub sab_alloc: ::std::option::Option<
         unsafe extern "C" fn(
@@ -2611,7 +2611,7 @@ fn bindgen_test_layout_JSCFunctionListEntry__bindgen_ty_1__bindgen_ty_2() {
     );
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone, PartialEq, Eq)]
+#[derive(Debug, Copy, Clone)]
 pub struct JSCFunctionListEntry__bindgen_ty_1__bindgen_ty_3 {
     pub name: *const ::std::os::raw::c_char,
     pub base: ::std::os::raw::c_int,
@@ -2662,7 +2662,7 @@ fn bindgen_test_layout_JSCFunctionListEntry__bindgen_ty_1__bindgen_ty_3() {
     );
 }
 #[repr(C)]
-#[derive(Debug, Copy, Clone, PartialEq, Eq)]
+#[derive(Debug, Copy, Clone)]
 pub struct JSCFunctionListEntry__bindgen_ty_1__bindgen_ty_4 {
     pub tab: *const JSCFunctionListEntry,
     pub len: ::std::os::raw::c_int,
@@ -2986,4 +2986,7 @@ extern "C" {
 }
 extern "C" {
     pub static JS_UNINITIALIZED__: JSValue;
+}
+extern "C" {
+    pub fn JS_IsEqual__(v1: JSValue, v2: JSValue) -> ::std::os::raw::c_int;
 }

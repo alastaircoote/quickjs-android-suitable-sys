@@ -9,7 +9,7 @@ license = "MIT"
 name = "quickjs_android_suitable_sys"
 readme = "README.md"
 repository = "https://github.com/alastaircoote/quickjs-android-suitable-sys"
-version = "0.20201108.8"
+version = "0.20201108.9"
 
 [features]
 bignum = []

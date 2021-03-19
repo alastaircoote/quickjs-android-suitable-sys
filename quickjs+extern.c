@@ -66,6 +66,26 @@ extern "C"
     const JSValue JS_EXCEPTION__ = JS_EXCEPTION;
     const JSValue JS_UNINITIALIZED__ = JS_UNINITIALIZED;
 
+    int JS_IsEqual__(JSValueConst v1, JSValueConst v2)
+    {
+        if (v1.tag != v2.tag)
+        {
+            return 0;
+        }
+        int tag = JS_VALUE_GET_TAG(v1);
+        if (tag == JS_TAG_NULL || tag == JS_TAG_UNDEFINED || tag == JS_TAG_UNDEFINED)
+        {
+            return 1;
+        }
+
+        if (tag == JS_TAG_INT)
+            return JS_VALUE_GET_INT(v1) == JS_VALUE_GET_INT(v2);
+        if (tag == JS_TAG_FLOAT64)
+            return JS_VALUE_GET_FLOAT64(v1) == JS_VALUE_GET_FLOAT64(v2);
+
+        return JS_VALUE_GET_PTR(v1) == JS_VALUE_GET_PTR(v2);
+    }
+
 #ifdef __cplusplus
 } /* extern "C" { */
 #endif

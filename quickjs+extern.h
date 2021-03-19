@@ -26,6 +26,8 @@ extern "C"
     const JSValue JS_EXCEPTION__;
     const JSValue JS_UNINITIALIZED__;
 
+    int JS_IsEqual__(JSValueConst v1, JSValueConst v2);
+
 #ifdef __cplusplus
 } /* extern "C" { */
 #endif
