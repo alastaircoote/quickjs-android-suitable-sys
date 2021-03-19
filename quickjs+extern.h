@@ -20,6 +20,12 @@ extern "C"
     JSValue JS_DupValue__(JSContext *ctx, JSValueConst v);
     JSValue JS_DupValueRT__(JSRuntime *rt, JSValueConst v);
 
+    const JSValue JS_UNDEFINED__ = JS_UNDEFINED;
+    const JSValue JS_NULL__ = JS_NULL;
+    const JSValue JS_TRUE__ = JS_TRUE;
+    const JSValue JS_EXCEPTION__ = JS_EXCEPTION;
+    const JSValue JS_UNINITIALIZED__ = JS_UNINITIALIZED;
+
 #ifdef __cplusplus
 } /* extern "C" { */
 #endif

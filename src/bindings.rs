@@ -2972,3 +2972,6 @@ extern "C" {
 extern "C" {
     pub fn JS_DupValueRT__(rt: *mut JSRuntime, v: JSValue) -> JSValue;
 }
+extern "C" {
+    pub static JS_UNDEFINED__: JSValue;
+}
