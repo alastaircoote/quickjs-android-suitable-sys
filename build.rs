@@ -20,6 +20,9 @@ fn build_library() {
     #[cfg(feature = "bignum")]
     builder.define("CONFIG_BIGNUM", None);
 
+    #[cfg(feature = "dump_free")]
+    builder.define("DUMP_FREE", None);
+
     builder
         .files(
             [
