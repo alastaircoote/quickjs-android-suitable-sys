@@ -2,7 +2,54 @@ use std::env;
 use std::path::PathBuf;
 
 fn main() {
+    println!("cargo:rerun-if-changed=quickjs+extern.h");
+    println!("cargo:rerun-if-changed=quickjs+extern.c");
+    println!("cargo:rerun-if-changed=quickjs");
+    generate_bindings();
     build_library();
+}
+
+fn generate_bindings() {
+    // Turns out QuickJS bindings look really different when you're building for
+    // Android i686. Why? No idea! But bindgen doesn't check platform, so we have to manually
+    // specify it.
+    // let target = env::var("TARGET").expect("Could not read the target platform");
+
+    let header_path =
+        PathBuf::from(env::var("CARGO_MANIFEST_DIR").unwrap()).join("./quickjs+extern.h");
+    let out_path = PathBuf::from(env::var("OUT_DIR").unwrap());
+
+    let mut manual_additions: Vec<&str> = vec!["#define CONFIG_ATOMICS;"];
+
+    #[cfg(feature = "bignum")]
+    manual_additions.push("#define CONFIG_BIGNUM;");
+
+    // Generate bindings.
+    let bindings = bindgen::Builder::default()
+        .header_contents("defines.h", &manual_additions.join("\n"))
+        .header(
+            header_path
+                .to_str()
+                .expect("Could not create QuickJS path")
+                .to_string(),
+        )
+        // .clang_arg(format!("--target={}", target))
+        // When in Android i686 JSValue becomes an f64. So we force JSValue to be
+        // opaque in all other situations, so we don't try to read out tags
+        // or anything like that and suddenly discover things break on i686.
+        .opaque_type("JSValue")
+        .whitelist_function("(JS|js).*")
+        .whitelist_type("(JS|js).*")
+        .whitelist_var("(JS|js).*")
+        .size_t_is_usize(true)
+        .derive_debug(true);
+
+    let generated = bindings.generate().expect("Unable to generate bindings");
+
+    // Write the bindings to the $OUT_DIR/bindings.rs file.
+    generated
+        .write_to_file(out_path.join("bindings.rs"))
+        .expect("Couldn't write bindings!");
 }
 
 fn build_library() {
@@ -61,6 +108,6 @@ fn build_library() {
         // since release builds use -O3 which might be problematic for quickjs,
         // and debug builds only happen once anyway so the optimization slowdown
         // is fine.
-        .opt_level(2)
+        // .opt_level(2)
         .compile("quickjs");
 }
