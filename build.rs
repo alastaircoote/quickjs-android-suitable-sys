@@ -43,6 +43,7 @@ fn generate_bindings() {
         .whitelist_var("(JS|js).*")
         .size_t_is_usize(true)
         .derive_eq(true)
+        .derive_hash(true)
         .derive_debug(true);
 
     let generated = bindings.generate().expect("Unable to generate bindings");
