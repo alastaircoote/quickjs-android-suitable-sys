@@ -23,6 +23,7 @@ extern "C"
     JS_BOOL JS_IsString__(JSValueConst v);
 
     void JS_FreeValue__(JSContext *ctx, JSValue v);
+    void JS_FreeValueRT__(JSRuntime *rt, JSValue v);
     int JS_GetTag__(JSValueConst v);
 
     JSValue JS_DupValue__(JSContext *ctx, JSValueConst v);

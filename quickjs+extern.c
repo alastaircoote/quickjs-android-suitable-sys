@@ -30,6 +30,11 @@ extern "C"
         JS_FreeValue(ctx, v);
     }
 
+    void JS_FreeValueRT__(JSRuntime *rt, JSValue v)
+    {
+        JS_FreeValueRT(rt, v);
+    }
+
     JS_BOOL JS_IsUndefined__(JSValueConst v)
     {
         return JS_IsUndefined(v);
